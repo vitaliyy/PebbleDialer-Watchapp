@@ -49,11 +49,11 @@ void show_menu()
 	mainMenuSection[0].items = mainMenuItems;
 	mainMenuSection[0].num_items = numOfGroups + 2;
 
-	mainMenuItems[0].title = "История";
+	mainMenuItems[0].title = "Call history";
 	mainMenuItems[0].icon = callHistoryIcon;
 	mainMenuItems[0].callback = menu_picked;
 
-	mainMenuItems[1].title = "Контакты";
+	mainMenuItems[1].title = "All contacts";
 	mainMenuItems[1].icon = contactsIcon;
 	mainMenuItems[1].callback = menu_picked;
 

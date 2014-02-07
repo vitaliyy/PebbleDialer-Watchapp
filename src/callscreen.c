@@ -95,7 +95,7 @@ void renderTextFields()
 	}
 	else
 	{
-		text_layer_set_text(title, "Входящий звонок");
+		text_layer_set_text(title, "Incoming call");
 	}
 }
 

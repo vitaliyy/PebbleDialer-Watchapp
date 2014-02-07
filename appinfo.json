@@ -15,54 +15,15 @@
     "resources": {
         "media": [
             {
+                "menuIcon": true,
                 "type": "png",
-                "name": "MISSED_CALL",
-                "file": "images/missedcall.png"
+                "name": "ICON",
+                "file": "images/icon.png"
             },
             {
                 "type": "png",
-                "name": "OUTGOING_CALL",
-                "file": "images/outgoingcall.png"
-            },
-            {
-                "type": "png",
-                "name": "INCOMING_CALL",
-                "file": "images/incomingcall.png"
-            },
-            {
-                "type": "png",
-                "name": "CONTACT_GROUP",
-                "file": "images/contactgroup.png"
-            },
-            {
-                "type": "png",
-                "name": "CONTACTS",
-                "file": "images/contacts.png"
-            },
-            {
-                "type": "png",
-                "name": "CALL_HISTORY",
-                "file": "images/callhistory.png"
-            },
-            {
-                "type": "png",
-                "name": "SPEAKER_OFF",
-                "file": "images/speakeroff.png"
-            },
-            {
-                "type": "png",
-                "name": "SPEAKER_ON",
-                "file": "images/speakeron.png"
-            },
-            {
-                "type": "png",
-                "name": "MIC_ON",
-                "file": "images/micon.png"
-            },
-            {
-                "type": "png",
-                "name": "MIC_OFF",
-                "file": "images/mic_off.png"
+                "name": "ANSWER",
+                "file": "images/answer.png"
             },
             {
                 "type": "png",
@@ -71,14 +32,53 @@
             },
             {
                 "type": "png",
-                "name": "ANSWER",
-                "file": "images/answer.png"
+                "name": "MIC_OFF",
+                "file": "images/mic_off.png"
             },
             {
-                "menuIcon": true,
                 "type": "png",
-                "name": "ICON",
-                "file": "images/icon.png"
+                "name": "MIC_ON",
+                "file": "images/micon.png"
+            },
+            {
+                "type": "png",
+                "name": "SPEAKER_ON",
+                "file": "images/speakeron.png"
+            },
+            {
+                "type": "png",
+                "name": "SPEAKER_OFF",
+                "file": "images/speakeroff.png"
+            },
+            {
+                "type": "png",
+                "name": "CALL_HISTORY",
+                "file": "images/callhistory.png"
+            },
+            {
+                "type": "png",
+                "name": "CONTACTS",
+                "file": "images/contacts.png"
+            },
+            {
+                "type": "png",
+                "name": "CONTACT_GROUP",
+                "file": "images/contactgroup.png"
+            },
+            {
+                "type": "png",
+                "name": "INCOMING_CALL",
+                "file": "images/incomingcall.png"
+            },
+            {
+                "type": "png",
+                "name": "OUTGOING_CALL",
+                "file": "images/outgoingcall.png"
+            },
+            {
+                "type": "png",
+                "name": "MISSED_CALL",
+                "file": "images/missedcall.png"
             }
         ]
     }
