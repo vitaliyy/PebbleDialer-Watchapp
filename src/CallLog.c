@@ -14,7 +14,7 @@ int16_t pickedEntry = -1;
 uint8_t pickedMode = 0;
 
 bool cl_sending = false;
-char cl_names[21][21] = {};
+char cl_names[36][36] = {};
 char cl_dates[21][21] = {};
 uint8_t cl_types[21] = {};
 char cl_numbers[21][21] = {};
@@ -41,9 +41,24 @@ int8_t cl_convertToArrayPos(uint16_t index)
 	return arrayPos;
 }
 
+int8_t cl_convertToArrayPosNames(uint16_t index)
+{
+	int16_t indexDiff = index - cl_centerIndex;
+	if (indexDiff > 10 || indexDiff < -10)
+		return -1;
+
+	int8_t arrayPos = cl_arrayCenterPos + indexDiff;
+	if (arrayPos < 0)
+		arrayPos += 36;
+	if (arrayPos > 36)
+		arrayPos -= 36;
+
+	return arrayPos;
+}
+
 char* cl_getName(uint16_t index)
 {
-	int8_t arrayPos = cl_convertToArrayPos(index);
+	int8_t arrayPos = cl_convertToArrayPosNames(index);
 	if (arrayPos < 0)
 		return "";
 
@@ -126,21 +141,21 @@ void cl_shiftArray(int newIndex)
 
 	if (diff > 0)
 	{
-		if (cl_arrayCenterPos > 20)
-			cl_arrayCenterPos -= 21;
+		if (cl_arrayCenterPos > 36)
+			cl_arrayCenterPos -= 36;
 
 		clearIndex = cl_arrayCenterPos - 10;
 		if (clearIndex < 0)
-			clearIndex += 21;
+			clearIndex += 36;
 	}
 	else
 	{
 		if (cl_arrayCenterPos < 0)
-			cl_arrayCenterPos += 21;
+			cl_arrayCenterPos += 36;
 
 		clearIndex = cl_arrayCenterPos + 10;
-		if (clearIndex > 20)
-			clearIndex -= 21;
+		if (clearIndex > 36)
+			clearIndex -= 36;
 	}
 
 	*cl_names[clearIndex] = 0;
@@ -252,7 +267,7 @@ uint16_t cl_menu_get_num_rows_callback(MenuLayer *me, uint16_t section_index, vo
 
 
 int16_t cl_menu_get_row_height_callback(MenuLayer *me,  MenuIndex *cell_index, void *data) {
-	return (strlen(cl_getNumber(cell_index->row)) == 0 ? 40 : 55);
+	return (strlen(cl_getNumber(cell_index->row)) == 0 ? 40 : 50);
 }
 
 void cl_menu_pos_changed(struct MenuLayer *menu_layer, MenuIndex new_index, MenuIndex old_index, void *callback_context)
@@ -267,10 +282,10 @@ void cl_menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex
 
 	graphics_context_set_text_color(ctx, GColorBlack);
 
-	graphics_draw_text(ctx, cl_getName(cell_index->row), fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD), GRect(35, 0, 144 - 30, 20), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
-	graphics_draw_text(ctx, cl_getDate(cell_index->row), fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(35, 20, 144 - 30, 15), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
+	graphics_draw_text(ctx, cl_getName(cell_index->row), fonts_get_system_font(FONT_KEY_GOTHIC_14_BOLD), GRect(35, 0, 144 - 30, 36), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
+	graphics_draw_text(ctx, cl_getDate(cell_index->row), fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(35, 15, 144 - 30, 15), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
 	if (hasNumberType)
-		graphics_draw_text(ctx, cl_getNumber(cell_index->row), fonts_get_system_font(FONT_KEY_GOTHIC_14_BOLD), GRect(35, 35, 144 - 30, 20), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
+		graphics_draw_text(ctx, cl_getNumber(cell_index->row), fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(35, 30, 144 - 30, 20), GTextOverflowModeTrailingEllipsis, GTextAlignmentLeft, NULL);
 
 	GBitmap* image;
 	switch (cl_getType(cell_index->row))
@@ -386,4 +401,3 @@ void init_call_log_window()
 
 	window_stack_push(callLogWindow, true /* Animated */);
 }
-

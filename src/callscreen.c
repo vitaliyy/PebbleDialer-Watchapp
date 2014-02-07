@@ -28,7 +28,7 @@ bool nameExist;
 
 bool busy;
 
-char callerNameText[21];
+char callerNameText[41];
 char callerNumTypeText[21];
 char callerNumberText[21];
 
@@ -95,7 +95,7 @@ void renderTextFields()
 	}
 	else
 	{
-		text_layer_set_text(title, "Incoming Call");
+		text_layer_set_text(title, "Входящий звонок");
 	}
 }
 
@@ -255,6 +255,7 @@ void callscreen_init()
 	layer_add_child(topLayer, (Layer *)title);
 
 	callerName = text_layer_create(GRect(5,40,144 - 30,60));
+	text_layer_set_overflow_mode(callerName, GTextOverflowModeFill);
 	text_layer_set_font(callerName, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
 	text_layer_set_text_alignment(callerName, GTextAlignmentCenter);
 	layer_add_child(topLayer, (Layer *)callerName);
