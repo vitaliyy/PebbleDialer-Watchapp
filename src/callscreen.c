@@ -25,6 +25,7 @@ uint16_t elapsedTime = 0;
 bool speakerOn;
 bool micOn;
 bool nameExist;
+bool Accelwork = false;
 
 bool busy;
 
@@ -126,6 +127,7 @@ void sendAction(int buttonId)
 	app_message_outbox_send();
 
 	busy = true;
+	vibes_cancel();
 }
 
 void up_button_callscreen(ClickRecognizerRef recognizer, Window *window)
@@ -161,9 +163,27 @@ void center_button_callscreen(ClickRecognizerRef recognizer, Window *window)
 void down_button_callscreen(ClickRecognizerRef recognizer, Window *window)
 {
 	if (busy) return;
-
+	
 	sendAction(2);
 }
+void handle_accel_tap(AccelAxisType axis, int32_t direction)
+{
+    if (busy) return;
+	if (callEstablished) return;
+	if (Accelwork) return;
+	
+	bool MoveToPlusY = direction == -1 && axis == ACCEL_AXIS_Y;
+	bool MoveToMinY = direction == 1 && axis == ACCEL_AXIS_Y;
+		
+	if (MoveToPlusY && MoveToMinY) {
+		vibes_cancel();
+		sendAction(3);
+		Accelwork = true;
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "Tap work");
+	}else
+	{APP_LOG(APP_LOG_LEVEL_DEBUG, "Tap not work");
+	}	
+} 
 
 void config_provider_callscreen(void* context) {
 	window_single_click_subscribe(BUTTON_ID_UP, (ClickHandler) up_button_callscreen);
@@ -281,7 +301,8 @@ void callscreen_init()
 	action_bar_layer_set_click_config_provider(actionBar, (ClickConfigProvider) config_provider_callscreen);
 
 	window_stack_push(callscreen, false);
-
+	accel_service_set_sampling_rate(ACCEL_SAMPLING_50HZ);
+	accel_tap_service_subscribe(&handle_accel_tap);
 	//renderActionBar();
 	//renderTextFields();
 }

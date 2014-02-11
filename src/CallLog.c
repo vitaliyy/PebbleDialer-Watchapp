@@ -363,7 +363,7 @@ void cl_window_unload(Window *me) {
 	gbitmap_destroy(incomingCall);
 	gbitmap_destroy(outgoingCall);
 	gbitmap_destroy(missedCall);
-
+	accel_tap_service_unsubscribe();
 }
 
 void init_call_log_window()

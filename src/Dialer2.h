@@ -7,6 +7,7 @@
 
 #ifndef DIALER2_H_
 #define DIALER2_H_
+#define CUURLANG
 
 void setCurWindow(int window);
 void switchWindow(int window);

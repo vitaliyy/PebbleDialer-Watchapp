@@ -5,7 +5,7 @@
     "longName": "Pebble Dialer",
     "versionCode": 2,
     "capabilities": [
-        ""
+        "configurable"
     ],
     "shortName": "Pebble Dialer",
     "companyName": "matejdro",

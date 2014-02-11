@@ -9,6 +9,16 @@
 
 uint8_t curWindow = 0;
 
+typedef struct persist {
+    uint8_t currlang;                // language index
+	uint8_t shake_for_mute;          // enable accel for mute incoming call   
+} __attribute__((__packed__)) persist;
+
+persist settings = {
+  .currlang    = 1, //english
+  .shake_for_mute  = 1, // mute
+};
+
 void setCurWindow(int window)
 {
 	curWindow = window;
